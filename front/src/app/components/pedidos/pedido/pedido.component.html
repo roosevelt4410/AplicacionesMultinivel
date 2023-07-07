@@ -1,0 +1,29 @@
+<h1 class="text-center text-purple-500 pt-6">Listado de pedidos</h1>
+
+<button class="bg-blue-500 text-white px-4 py-2 rounded" (click)="crearPedido()">Crear Pedido</button>
+
+<table class="w-full border-collapse mt-4">
+  <thead>
+    <tr>
+      <th class="py-2 px-4 border">ID</th>
+      <th class="py-2 px-4 border">Cliente</th>
+      <th class="py-2 px-4 border">Estado</th>
+      <th class="py-2 px-4 border">Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let pedido of pedidos">
+      <td class="py-2 px-4 border text-center">{{ pedido.id }}</td>
+      <td class="py-2 px-4 border text-center">{{ obtenerNombreCliente(pedido.clienteId) }}</td>
+      <td class="py-2 px-4 border text-center">{{ obtenerNombreEstado(pedido.estadoPedidoId) }}</td>
+      <td class="py-2 px-4 border text-center">
+        <button class="bg-yellow-500 text-white px-2 py-1 rounded m-1" (click)="editarPedido(pedido.id)">Editar</button>
+        <button class="bg-red-500 text-white px-2 py-1 rounded m-1" (click)="eliminarPedido(pedido.id)">Eliminar</button>
+        <button class="bg-blue-500 text-white px-2 py-1 rounded m-1" (click)="verDetalle(pedido.id)">Ver Detalle</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+
+

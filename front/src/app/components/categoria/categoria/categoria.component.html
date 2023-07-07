@@ -1,0 +1,67 @@
+
+<h1 class="text-center text-purple-500 pt-6">Listado de categorias</h1>
+<hr class="mt-8"/>
+<mat-table [dataSource]="dataSource" matSort>
+    <ng-container [matColumnDef]="column" *ngFor="let column of listColumnas; let i = index">
+        <span *ngIf="column != 'opciones'">
+            <mat-header-cell *matHeaderCellDef>{{ "categorias." + column | translate}}</mat-header-cell>
+            <mat-cell *matCellDef="let categoria">{{ categoria[column] }}</mat-cell>
+        </span>
+
+        <span *ngIf="column == 'opciones'">
+            <mat-header-cell *matHeaderCellDef></mat-header-cell>
+            <mat-cell *matCellDef="let categoria">
+                <button mat-icon-button [matMenuTriggerFor]="menu" color="primary">
+                    <mat-icon>menu</mat-icon>
+                </button>
+                <mat-menu #menu="matMenu">
+                    <button mat-menu-item (click)="verDetalle(categoria)">
+                        <mat-icon>visibility</mat-icon>
+                        <span>Ver detalle</span>
+                    </button>
+                    <button mat-menu-item (click)="editar(categoria)">
+                        <mat-icon>edit</mat-icon>
+                        <span>Editar</span>
+                    </button>
+
+                    <button mat-menu-item (click)="eliminar(categoria.id)">
+                        <mat-icon>delete</mat-icon>
+                        <span>Eliminar</span>
+                    </button>
+                </mat-menu>
+            </mat-cell>
+        </span>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="listColumnas"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: listColumnas"></mat-row>
+</mat-table>
+
+
+<h1 class="text-center text-purple-500 pt-6">Crear Categoria</h1>
+<div class="container mx-auto">
+    <form [formGroup]="form" *ngIf="isForm | async as isForm">
+        <mat-grid-list cols="1" rowHeight="80px">
+            <mat-grid-tile appearance="fill">
+                <mat-form-field style="width: 50%;">
+                    <input matInput formControlName="nombre" type="text" maxlength="50" placeholder="{{'productos.ingreseNombre' | translate}}">
+                </mat-form-field>
+            </mat-grid-tile>
+        </mat-grid-list>
+
+        <mat-grid-list cols="1" rowHeight="80px">
+            <mat-grid-tile appearance="fill">
+                <mat-form-field style="width: 50%;">
+                    <input matInput formControlName="descripcion" type="text" placeholder="{{'productos.ingreseDescripcion' | translate}}">
+                </mat-form-field>
+            </mat-grid-tile>
+        </mat-grid-list>
+        <button mat-raised-button color="primary" class="mx-auto mt-4 block" (click)="procesarOperacion()">
+            Aceptar
+          </button>     
+    </form>
+</div>
+
+<ng-template #detalleCategoriaTemplate let-dialogRef>
+    <app-detalle-categoria [categoria]="selectedCategoria" (cerrar)="cerrarDetalleCategoria()"></app-detalle-categoria>
+  </ng-template>

@@ -1,0 +1,28 @@
+<!-- agregar-detalle-modal.component.html -->
+<div class="fixed inset-0 flex items-center justify-center z-50">
+    <div class="bg-white shadow-lg rounded-lg p-6">
+      <h2 class="text-lg font-bold mb-4">Agregar Detalle</h2>
+  
+      <form (ngSubmit)="guardarDetalle()" #detalleForm="ngForm">
+        <div class="mb-4">
+          <mat-form-field>
+            <mat-label>Producto</mat-label>
+            <mat-select id="producto" name="producto" [(ngModel)]="detalle.productoId" required>
+              <mat-option *ngFor="let producto of listaProductos" [value]="producto.id">{{ producto.nombre }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+  
+        <div class="mb-4">
+          <label for="cantidad" class="block mb-2">Cantidad</label>
+          <input type="number" id="cantidad" name="cantidad" [(ngModel)]="detalle.cantidad" required class="w-full p-2 border border-gray-300 rounded" min="1">
+        </div>
+  
+        <div class="flex justify-end">
+          <button type="button" class="px-4 py-2 mr-2 text-white bg-gray-500 rounded hover:bg-gray-600" (click)="cancelarModal()">Cancelar</button>
+          <button type="submit" class="px-4 py-2 text-white bg-blue-500 rounded hover:bg-blue-600">Guardar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  

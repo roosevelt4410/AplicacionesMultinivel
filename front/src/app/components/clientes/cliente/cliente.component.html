@@ -1,0 +1,101 @@
+<h1 class="text-center text-purple-500 pt-6">Listado de clientes</h1>
+<hr class="mt-8"/>
+<mat-table [dataSource]="dataSource" matSort>
+    <ng-container [matColumnDef]="column" *ngFor="let column of listColumnas; let i = index">
+        <span *ngIf="column != 'opciones'">
+            <mat-header-cell *matHeaderCellDef>{{ "clientes." + column | translate}}</mat-header-cell>
+            <mat-cell *matCellDef="let cliente">
+                <ng-container *ngIf="column === 'tipoDocumento'">{{ obtenerDescripcionTipoDocumento(cliente[column]) }}</ng-container>
+                <ng-container *ngIf="column !== 'tipoDocumento'">{{cliente[column]}}</ng-container>
+            </mat-cell>
+        </span>
+
+        <span *ngIf="column == 'opciones'">
+            <mat-header-cell *matHeaderCellDef></mat-header-cell>
+            <mat-cell *matCellDef="let cliente">
+                <button mat-icon-button [matMenuTriggerFor]="menu" color="primary">
+                    <mat-icon>menu</mat-icon>
+                </button>
+                <mat-menu #menu="matMenu">
+                    <button mat-menu-item (click)="verDetalle(cliente)">
+                        <mat-icon>visibility</mat-icon>
+                        <span>Ver detalle</span>
+                    </button>
+                    <button mat-menu-item (click)="editarr(cliente)">
+                        <mat-icon>edit</mat-icon>
+                        <span>Editar</span>
+                    </button>
+
+                    <button mat-menu-item (click)="eliminar(cliente.id)">
+                        <mat-icon>delete</mat-icon>
+                        <span>Eliminar</span>
+                    </button>
+                </mat-menu>
+            </mat-cell>
+        </span>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="listColumnas"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: listColumnas"></mat-row>
+</mat-table>
+
+
+<h1 class="text-center text-purple-500 pt-6">Crear Cliente</h1>
+<div class="container mx-auto">
+    <form [formGroup]="form" *ngIf="isForm | async as isForm">
+        <mat-grid-list cols="1" rowHeight="80px">
+            <mat-grid-tile appearance="fill">
+                <mat-form-field style="width: 50%;">
+                    <input matInput formControlName="apellidos" type="text" maxlength="50" placeholder="{{'clientes.ingreseApellidos' | translate}}">
+                </mat-form-field>
+            </mat-grid-tile>
+        </mat-grid-list>
+
+        <mat-grid-list cols="1" rowHeight="80px">
+            <mat-grid-tile appearance="fill">
+                <mat-form-field style="width: 50%;">
+                    <input matInput formControlName="documento" type="text" placeholder="{{'clientes.ingreseDocumento' | translate}}">
+                </mat-form-field>
+            </mat-grid-tile>
+        </mat-grid-list>
+
+        <mat-grid-list cols="1" rowHeight="80px">
+            <mat-grid-tile appearance="fill">
+                <mat-form-field style="width: 50%;">
+                    <input matInput formControlName="nombres" type="text" placeholder="{{'clientes.ingreseNombres' | translate}}">
+                </mat-form-field>
+            </mat-grid-tile>
+        </mat-grid-list>
+
+        <mat-grid-list cols="1" rowHeight="80px">
+            <mat-grid-tile appearance="fill">
+                <mat-form-field style="width: 50%;">
+                    <input matInput formControlName="estado" type="text" placeholder="{{'clientes.ingreseEstado' | translate}}">
+                </mat-form-field>
+            </mat-grid-tile>
+        </mat-grid-list>
+
+        <mat-grid-list cols="1" rowHeight="80px">
+            <mat-grid-tile appearance="fill">
+                <mat-form-field style="width: 50%;">
+                    <mat-label>{{ 'clientes.ingreseTipoDocumento' | translate }}</mat-label>
+                    <mat-select formControlName="tipoDocumento">
+                        <mat-option *ngFor="let tipoDocumento of tipoDocumentos" [value]="tipoDocumento">
+                            {{ tipoDocumento.descripcion }}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </mat-grid-tile>
+        </mat-grid-list>
+          
+
+        <button mat-raised-button color="primary" class="mx-auto mt-4 block" (click)="procesarOperacion()">
+            Aceptar
+        </button>     
+    </form>
+</div>
+
+<ng-template #detalleClienteTemplate let-dialogRef>
+    <app-detalle-cliente [cliente]="selectedCliente" (cerrar)="cerrarDetalleCliente()"></app-detalle-cliente>
+</ng-template>
+

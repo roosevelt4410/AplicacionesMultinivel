@@ -1,0 +1,8 @@
+.detalle-pedido-container {
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.detalle-pedido-item {
+  margin-bottom: 20px;
+}

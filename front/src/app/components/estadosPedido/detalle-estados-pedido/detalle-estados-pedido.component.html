@@ -1,0 +1,14 @@
+<div class="bg-gray-100 p-4">
+    <div class="max-w-md mx-auto">
+      <div class="bg-white shadow-md rounded-md p-4">
+        <h1 class="text-blue-600">Detalle Estado Pedido</h1>
+        <div class="text-lg mb-4"><strong class="text-blue-800">id:</strong> {{ estadoPedido?.id }}</div>
+        <div class="mb-4">
+          <strong class="text-blue-800">Descripción:</strong> {{ estadoPedido?.descripcion }}
+        </div>
+        <div class="flex justify-end">
+          <button class="px-4 py-2 bg-blue-500 text-white rounded-md" (click)="cerrarDetalle()">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>

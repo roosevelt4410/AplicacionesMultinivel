@@ -1,0 +1,25 @@
+<div class="bg-gray-100 p-4">
+  <div class="max-w-md mx-auto">
+    <div class="bg-white shadow-md rounded-md p-4">
+      <div class="text-lg font-semibold mb-4">{{ producto.nombre }}</div>
+      <div class="mb-4">
+        <strong>Descripción:</strong> {{ producto.descripcion }}
+      </div>
+      <div class="mb-4">
+        <strong>Precio Unitario:</strong> {{ producto.precioUnitario }}
+      </div>
+      <div class="mb-4">
+        <strong>Referencia:</strong> {{ producto.referencia }}
+      </div>
+      <div class="mb-4">
+        <strong>Unidades Disponibles:</strong> {{ producto.unidadesDisponibles }}
+      </div>
+      <div class="mb-4">
+        <strong>Categoría:</strong> {{ producto.categoria?.nombre }}
+      </div>
+      <div class="flex justify-end">
+        <button class="px-4 py-2 bg-blue-500 text-white rounded-md" (click)="cerrarDetalle()">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>

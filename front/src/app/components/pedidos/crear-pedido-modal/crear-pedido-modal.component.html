@@ -1,0 +1,55 @@
+<div class="container mx-auto m-5 p-12" style="max-width: 800px; max-height: 500px;">
+  <h1 class="text-center text-purple-500">Crear Pedido</h1>
+
+  <form #pedidoForm="ngForm" class="mt-8">
+    <div class="mb-2">
+      <mat-form-field>
+        <mat-label>Cliente</mat-label>
+        <mat-select id="cliente" name="cliente" [(ngModel)]="pedido.clienteId" required>
+          <mat-option *ngFor="let cliente of listaClientes" [value]="cliente.id">{{ cliente.nombres }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="mb-2">
+      <mat-form-field>
+        <mat-label>Estado Pedido</mat-label>
+        <mat-select id="estadoPedido" name="estadoPedido" [(ngModel)]="pedido.estadoPedidoId" required>
+          <mat-option *ngFor="let estado of listaEstadosPedido" [value]="estado.id">{{ estado.descripcion }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <hr class="my-8">
+
+    <h1 class="text-center text-purple-600">Detalle del pedido</h1>
+
+    <div class="detalle-pedido-container" style="max-height: 300px; overflow-y: auto;">
+      <div *ngFor="let detalle of detallesPedido; let i = index" class="detalle-pedido-item">
+        <mat-form-field>
+          <mat-label>Producto</mat-label>
+          <mat-select id="producto{{i}}" name="producto{{i}}" [(ngModel)]="detalle.productoId" required>
+            <mat-option *ngFor="let producto of listaProductos" [value]="producto.id">{{ producto.nombre }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Cantidad {{i+1}}</mat-label>
+          <input type="number" matInput id="cantidad{{i}}" name="cantidad{{i}}" [(ngModel)]="detalle.cantidad" required min="1">
+        </mat-form-field>
+
+        <hr class="my-6">
+      </div>
+    </div>
+
+   
+  </form>
+
+
+  <div class="flex justify-end pb-2">
+    <button type="button" class="px-4 py-2 mr-2 text-white bg-yellow-500 rounded hover:bg-yellow-600" (click)="agregarDetalle()">Agregar Detalle</button>
+    <button type="button" class="px-4 py-2 mr-2 text-white bg-gray-500 rounded hover:bg-gray-600" (click)="cancelar()">Cancelar</button>
+    <button type="submit" class="px-4 py-2 text-white bg-blue-500 rounded hover:bg-blue-600" (click)="crearPedido()">Confirmar Pedido</button>
+  </div>
+</div>
+

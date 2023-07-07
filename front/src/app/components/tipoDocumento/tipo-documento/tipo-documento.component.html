@@ -1,0 +1,59 @@
+<h1 class="text-center text-purple-500 pt-6">Listado de tipos de documento</h1>
+
+
+<mat-table [dataSource]="dataSource" matSort>
+    <ng-container [matColumnDef]="column" *ngFor="let column of listColumnas; let i = index">
+        <span *ngIf="column != 'opciones'">
+            <mat-header-cell *matHeaderCellDef>{{ "tipoDocumento." + column | translate}}</mat-header-cell>
+            <mat-cell *matCellDef="let tipoDocumento">{{ tipoDocumento[column] }}</mat-cell>
+        </span>
+
+        <span *ngIf="column == 'opciones'">
+            <mat-header-cell *matHeaderCellDef></mat-header-cell>
+            <mat-cell *matCellDef="let tipoDocumento">
+                <button mat-icon-button [matMenuTriggerFor]="menu" color="primary">
+                    <mat-icon>menu</mat-icon>
+                </button>
+                <mat-menu #menu="matMenu">
+                    <button mat-menu-item (click)="verDetalle(tipoDocumento)">
+                        <mat-icon>visibility</mat-icon>
+                        <span>Ver detalle</span>
+                    </button>
+                    <button mat-menu-item (click)="editar(tipoDocumento)">
+                        <mat-icon>edit</mat-icon>
+                        <span>Editar</span>
+                    </button>
+
+                    <button mat-menu-item (click)="eliminar(tipoDocumento.id)">
+                        <mat-icon>delete</mat-icon>
+                        <span>Eliminar</span>
+                    </button>
+                </mat-menu>
+            </mat-cell>
+        </span>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="listColumnas"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: listColumnas"></mat-row>
+</mat-table>
+
+<h1 class="text-center text-purple-500 pt-6">Crear Tipo Documento</h1>
+<div class="container mx-auto">
+    <form [formGroup]="form" *ngIf="isForm | async as isForm">
+        <mat-grid-list cols="1" rowHeight="80px">
+            <mat-grid-tile appearance="fill">
+                <mat-form-field style="width: 50%;">
+                    <input matInput formControlName="descripcion" type="text" maxlength="50" placeholder="{{'tipoDocumento.descripcion' | translate}}">
+                </mat-form-field>
+            </mat-grid-tile>
+        </mat-grid-list>
+
+        <button mat-raised-button color="primary" class="mx-auto mt-4 block" (click)="procesarOperacion()">
+            Aceptar
+          </button>     
+    </form>
+</div>
+
+<ng-template #detalleTipoDocumentoTemplate let-dialogRef>
+    <app-detalle-tipo-documento [tipoDocumento]="selectedTipoDocumento" (cerrar)="cerrarDetalleTipoDocumento()"></app-detalle-tipo-documento>
+  </ng-template>

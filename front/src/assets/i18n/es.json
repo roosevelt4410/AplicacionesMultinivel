@@ -1,0 +1,53 @@
+{
+    "categorias": {
+        "titulo":"Categorias",
+        "id":"Id",
+        "nombre": "Nombre",
+        "descripcion":"Descripcion",
+        "ingreseNombre":"Ingrese por favor nombre....",
+        "ingreseDescripcion":"Ingrese descripción...",
+        "opciones":"opciones"
+    },
+    "tipoDocumento": {
+        "titulo":"Tipos Documentos",
+        "id":"Id",
+        "descripcion":"Descripcion",
+        "ingreseDescripcion":"Ingrese descripción...",
+        "opciones":"opciones"
+    },
+    "productos":{
+        "titulo":"Productos",
+        "id":"Id",
+        "nombre": "Nombre",
+        "precioUnitario":"Precio Unitario",
+        "unidadesDisponibles":"Unidades Disponibles",
+        "categoria":"Categoria",
+        "referencia":"Referencia",
+        "descripcion":"Descripcion",
+        "ingreseNombre":"Ingrese por favor nombre....",
+        "ingreseDescripcion":"Ingrese descripción...",
+        "ingreseUnidadesDisponibles":"Ingrese unidades disponibles...",
+        "ingreseReferencia":"ingrese referencia...",
+        "ingresePrecioUnitario":"ingrese precio unitario....",
+        "ingreseCategoria":"Categoria del producto"
+        
+    },
+    "clientes":{
+        "titulo":"Clientes",
+        "id":"Id",
+        "nombre": "Nombre",
+        "precioUnitario":"Precio Unitario",
+        "unidadesDisponibles":"Unidades Disponibles",
+        "categoria":"Categoria",
+        "apellidos":"Apellidos",
+        "documento":"Documento",
+        "estado":"Estado",
+        "nombres":"Nombres",
+        "ingreseApellidos":"Ingrese por favor los apellidos",
+        "ingreseNombres":"Ingrese por favor el nombre",
+        "ingreseDocumento":"Ingrese el tipo de documento",
+        "tipoDocumento":"Tipo Documento",
+        "ingreseTipoDocumento":"Ingrese tipo documento...",
+        "ingreseEstado":"Ingrese estado..."
+    }
+}

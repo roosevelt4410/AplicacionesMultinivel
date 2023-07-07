@@ -29,12 +29,18 @@ export class DetallePedidoService {
     return this.httpClient.post<DetallesPedido[]>(`${environment.urlBase}/detallepedido/guardarlistado`,detallePedidos);
   }
 
-  eliminarDetallePedido(idDetallePedido:number):Observable<DetallesPedido>{
-    return this.httpClient.delete<DetallesPedido>(`${environment.urlBase}/detallepedido/eliminar/${idDetallePedido}`);
+  eliminarDetallePedido(id:number):Observable<DetallesPedido>{
+    return this.httpClient.delete<DetallesPedido>(`${environment.urlBase}/detallepedido/eliminar/${id}`);
   }
 
 
   actualizarPedido(pediddo:Pedido):Observable<DetallesPedido>{
     return this.httpClient.put<DetallesPedido>(`${environment.urlBase}/detallepedido/actualizar`,pediddo);
   }
+
+  obtenerDetallesPorPedidoId(pedidoId: number): Observable<DetallesPedido[]> {
+    return this.httpClient.get<DetallesPedido[]>(`${environment.urlBase}/detallepedido/pedido/${pedidoId}`);
+  }
+
+
 }

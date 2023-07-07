@@ -25,6 +25,7 @@ export class PedidoService {
   }
 
   eliminarPedido(idPedido:number):Observable<Pedido>{
+    debugger;
     return this.httpClient.delete<Pedido>(`${environment.urlBase}/pedidos/eliminar/${idPedido}`);
   }
 

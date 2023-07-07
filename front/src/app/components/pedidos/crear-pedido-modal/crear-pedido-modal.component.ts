@@ -114,7 +114,6 @@ export class CrearPedidoModalComponent {
   
       this.detalllePedidoService.crearDetallePedidos(detalles).subscribe(() => {
         this.dialogRef.close(true);
-        window.location.reload();
       });
     });
   }

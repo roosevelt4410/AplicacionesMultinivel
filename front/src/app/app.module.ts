@@ -25,9 +25,8 @@ import { PedidoComponent } from './components/pedidos/pedido/pedido.component';
 import { ClienteComponent } from './components/clientes/cliente/cliente.component';
 import { DetalleClienteComponent } from './components/clientes/detalle-cliente/detalle-cliente.component';
 import { CrearPedidoModalComponent } from './components/pedidos/crear-pedido-modal/crear-pedido-modal.component';
-import { EditarPedidoModalComponent } from './components/pedidos/editar-pedido-modal/editar-pedido-modal.component';
-import { EliminarPedidoModalComponent } from './components/pedidos/eliminar-pedido-modal/eliminar-pedido-modal.component';
 import { AgregarDetalleModalComponent } from './components/pedidos/agregar-detalle-modal/agregar-detalle-modal.component';
+import { DetallepedidomodalComponent } from './components/pedidos/detallepedidomodal/detallepedidomodal.component';
 
 
 @NgModule({
@@ -47,9 +46,8 @@ import { AgregarDetalleModalComponent } from './components/pedidos/agregar-detal
     ClienteComponent,
     DetalleClienteComponent,
     CrearPedidoModalComponent,
-    EditarPedidoModalComponent,
-    EliminarPedidoModalComponent,
-    AgregarDetalleModalComponent
+    AgregarDetalleModalComponent,
+    DetallepedidomodalComponent
     
   ],
   imports: [

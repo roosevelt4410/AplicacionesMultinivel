@@ -2,6 +2,9 @@ package co.edu.usbcali.airlinesapp.services;
 
 import java.util.List;
 
+import org.springframework.http.ResponseEntity;
+
+import co.edu.usbcali.airlinesapp.domain.DetallesPedido;
 import co.edu.usbcali.airlinesapp.dtos.DetallePedidoDTO;
 import co.edu.usbcali.airlinesapp.exceptions.DetallePedidoException;
 import co.edu.usbcali.airlinesapp.exceptions.PedidoException;
@@ -21,5 +24,9 @@ public interface DetallePedidoService {
 
 		List<Object> guardarListado(List<DetallePedidoDTO> listDetallePedido)
 			throws PedidoException, ProductoException, DetallePedidoException;
+		
+		 public void eliminarPorId(Integer pedidoId);
+		 
+		 public List<DetallesPedido> obtenerDetallesPorPedidoId(Integer pedidoId);
 
 }

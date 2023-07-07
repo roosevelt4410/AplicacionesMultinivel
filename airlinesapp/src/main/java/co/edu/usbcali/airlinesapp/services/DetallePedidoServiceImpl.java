@@ -2,7 +2,7 @@ package co.edu.usbcali.airlinesapp.services;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
+
 
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -105,6 +105,15 @@ public class DetallePedidoServiceImpl implements DetallePedidoService{
                 new DetallePedidoException(DetallePedidoServiceMessage.PEDIDO_ID_REQUERIDO));
         ValidationUtility.integerIsNullOrLessZero(detallePedidoDTO.getProductoId(),
                 new DetallePedidoException(DetallePedidoServiceMessage.PRODUCTO_ID_REQUERIDO));
+    }
+
+	@Override
+	public void eliminarPorId(Integer detallePedidoID) {
+		this.detallePedidoRepository.deleteById(detallePedidoID);
+	}
+	
+	public List<DetallesPedido> obtenerDetallesPorPedidoId(Integer pedidoId) {
+        return detallePedidoRepository.findAllByPedidoId(pedidoId);
     }
 	
 }

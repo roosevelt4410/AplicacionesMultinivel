@@ -1,0 +1,35 @@
+
+<div class="bg-gray-100 p-4">
+    <div class="max-w-md mx-auto">
+      <div class="bg-white shadow-md rounded-md p-4">
+        <h1 class="text-blue-600">Detalle de Pedido</h1>
+        <div class="text-lg mb-4">
+          <strong class="text-blue-800">ID del Pedido:</strong> {{ pedido?.id }}
+        </div>
+        <div class="mb-4">
+          <strong class="text-blue-800">Fecha:</strong> {{ pedido?.fecha }}
+        </div>
+        <div class="mb-4">
+          <strong class="text-blue-800">Total:</strong> {{ pedido?.total }}
+        </div>
+        <h2 class="text-blue-600">Detalles de Pedido</h2>
+        <ul>
+          <li *ngFor="let detalle of detallesPedidoss">
+            <div class="mb-2">
+              <strong class="text-blue-800">ID del Detalle:</strong> {{ detalle.id }}
+            </div>
+            <div class="mb-2">
+              <strong class="text-blue-800">Cantidad:</strong> {{ detalle.cantidad }}
+            </div>
+            <div class="mb-2">
+              <strong class="text-blue-800">Valor:</strong> {{ detalle.valor }}
+            </div>
+          </li>
+        </ul>
+        <div class="flex justify-end">
+          <button class="px-4 py-2 bg-blue-500 text-white rounded-md" (click)="cerrarDetalle()">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  

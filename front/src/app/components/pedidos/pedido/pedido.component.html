@@ -17,13 +17,16 @@
       <td class="py-2 px-4 border text-center">{{ obtenerNombreCliente(pedido.clienteId) }}</td>
       <td class="py-2 px-4 border text-center">{{ obtenerNombreEstado(pedido.estadoPedidoId) }}</td>
       <td class="py-2 px-4 border text-center">
-        <button class="bg-yellow-500 text-white px-2 py-1 rounded m-1" (click)="editarPedido(pedido.id)">Editar</button>
         <button class="bg-red-500 text-white px-2 py-1 rounded m-1" (click)="eliminarPedido(pedido.id)">Eliminar</button>
         <button class="bg-blue-500 text-white px-2 py-1 rounded m-1" (click)="verDetalle(pedido.id)">Ver Detalle</button>
       </td>
     </tr>
   </tbody>
 </table>
+
+<ng-template #detallePedidoTemplate let-dialogRef>
+  <app-detallepedidomodal [pedido]="selectedPedido" (cerrar)="cerrarDetallePedido()"></app-detallepedidomodal>
+</ng-template>
 
 
 
